@@ -1,4 +1,3 @@
-// Load plugins
 var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
@@ -34,7 +33,7 @@ gulp.task('styles', function() {
     // .pipe(notify({ message: 'Styles task complete' }));
 });
 
-gulp.task('copy', function() {
+gulp.task('html', function() {
     return gulp.src('src/*.html')
     .pipe(gulp.dest('dist'))
     .pipe(livereload(server));
@@ -85,9 +84,8 @@ gulp.task('watch', function() {
     gulp.watch('src/styles/**/*.css', ['styles']);
     gulp.watch('src/scripts/**/*.js', ['scripts']);
     gulp.watch('src/images/**/*', ['images']);
-    gulp.watch('src/*.html', ['copy']);
+    gulp.watch('src/*.html', ['html']);
   });
-
 });
 
-gulp.task('default', ['clean', 'styles', 'scripts', 'images', 'copy', 'serve', 'watch']);
+gulp.task('default', ['clean', 'styles', 'scripts', 'images', 'html', 'serve', 'watch']);
