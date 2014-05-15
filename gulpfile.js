@@ -15,6 +15,7 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     connect = require('connect'),
     http = require('http'),
+    wiredep = require('wiredep').stream,
     server = (require('tiny-lr'))();
 
 var config = {
@@ -61,6 +62,12 @@ gulp.task('images', function() {
     // .pipe(notify({ message: 'Images task complete' }));
 });
 
+gulp.task('bower', function() {
+    return gulp.src('./dist/index.html')
+        .pipe('./app/bower_componenets')
+        .pipe(gulp.dest('./dist');
+});
+
 gulp.task('serve', function(){
 	var app = connect()
 		.use(connect.logger('dev'))
@@ -88,4 +95,4 @@ gulp.task('watch', function() {
   });
 });
 
-gulp.task('default', ['clean', 'styles', 'scripts', 'images', 'html', 'serve', 'watch']);
+gulp.task('default', ['clean', 'styles', 'scripts', 'images', 'html', 'bower', 'serve', 'watch']);
