@@ -10,8 +10,6 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     clean = require('gulp-clean'),
     open = require('gulp-open'),
-    clean = require('gulp-clean'),
-    open = require('gulp-open'),
     livereload = require('gulp-livereload'),
     connect = require('connect'),
     http = require('http'),
@@ -65,7 +63,7 @@ gulp.task('images', function() {
 gulp.task('bower', function() {
     return gulp.src('./dist/index.html')
         .pipe('./app/bower_componenets')
-        .pipe(gulp.dest('./dist');
+        .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('serve', function(){
