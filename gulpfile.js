@@ -12,12 +12,13 @@ var gulp = require('gulp'),
     open = require('gulp-open'),
     livereload = require('gulp-livereload'),
     connect = require('connect'),
+    serveStatic = require('serve-static'),
     http = require('http'),
     wiredep = require('wiredep').stream,
     server = (require('tiny-lr'))();
 
 var config = {
-    port: 8000,
+    port: 9900,
     root: 'dist/'
 };
 
@@ -60,16 +61,16 @@ gulp.task('images', function() {
     // .pipe(notify({ message: 'Images task complete' }));
 });
 
-gulp.task('bower', function() {
-    return gulp.src('./dist/index.html')
-        .pipe('./app/bower_componenets')
-        .pipe(gulp.dest('./dist'));
-});
+// gulp.task('bower', function() {
+//     return gulp.src('./dist/index.html')
+//         .pipe('./app/bower_componenets')
+//         .pipe(gulp.dest('./dist'));
+// });
+//
 
 gulp.task('serve', function(){
 	var app = connect()
-		.use(connect.logger('dev'))
-		.use(connect.static(config.root));
+		.use(serveStatic(config.root));
 
 	http.createServer(app).listen(config.port);
 });
@@ -93,4 +94,4 @@ gulp.task('watch', function() {
   });
 });
 
-gulp.task('default', ['clean', 'styles', 'scripts', 'images', 'html', 'bower', 'serve', 'watch']);
+gulp.task('default', ['clean', 'styles', 'scripts', 'images', 'html', 'serve', 'watch']);
